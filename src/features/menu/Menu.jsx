@@ -7,12 +7,12 @@ function Menu() {
 	const menu = useLoaderData();
 
 	return (
-		<ul>
-			{menu.map((pizza) => (
-				<MenuItem pizza={pizza} key={pizza.id} />
-			))}
-		</ul>
-	);
+    <ul className="divide-y divide-stone-200 p-4 sm:px-6">
+      {menu.map((pizza) => (
+        <MenuItem pizza={pizza} key={pizza.id} />
+      ))}
+    </ul>
+  );
 }
 
 export async function loader() {
