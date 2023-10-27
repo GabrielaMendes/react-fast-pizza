@@ -1,11 +1,20 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import Button from "../../ui/Button";
+import { updateName } from "./userSlice";
+import { useNavigate } from "react-router-dom";
 
 function CreateUser() {
   const [username, setUsername] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!username.trim()) return;
+    dispatch(updateName(username.trim()));
+    navigate("/menu");
   }
 
   return (
@@ -22,9 +31,9 @@ function CreateUser() {
         className="input mb-8 w-72 sm:px-6 sm:py-4"
       />
 
-      {username !== "" && (
+      {username.trim() !== "" && (
         <div>
-          <Button type="primary" to="/menu">Start ordering</Button>
+          <Button type="primary">Start ordering</Button>
         </div>
       )}
     </form>
